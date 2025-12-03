@@ -14,3 +14,19 @@ import math
 
 def factorial(n):
     return math.factorial(n)
+# ----------------------------------------------
+# MODELO M/M/1
+# ----------------------------------------------
+def modelo_mm1(lam, mu):
+    print("\n--- MODELO M/M/1 ---")
+    print(f"λ = {lam}, μ = {mu}")
+
+    if lam >= mu:
+        print("El sistema no es estable :( λ debe ser menor que μ.")
+        return
+        
+    rho = lam / mu  # utilización
+    L = rho / (1 - rho)  # número promedio en el sistema
+    Lq = (rho**2) / (1 - rho)  # número promedio en cola
+    W = L / lam  # tiempo en el sistema
+    Wq = Lq / lam  # tiempo en cola
