@@ -4,8 +4,8 @@
 # Investigacion de Operaciones
 # ----------------------------------------------
 # Variables a usar:
-# λ = tasa promedio de llegadas
-# μ = tasa promedio de servicio
+# λ =  promedio de llegadas
+# μ =  promedio de servicio
 # C = numero de servidores
 # a = que tan cargado esta el sistema
 # ρ = utilizacion del sistema (que tanto se ocupa el servidor)
@@ -80,3 +80,72 @@ def modelo_mmc(lam, mu, c):
     print(f"L = {round(L, 4)}")
     print(f"Wq = {round(Wq, 4)}")
     print(f"W = {round(W, 4)}")
+
+# ----------------------------------------------
+# MODELO M/M/1/K  (o con capacidad de rechazo - segun yo -)
+# ----------------------------------------------
+def modelo_mm1k(lam, mu, K):
+    print("\n--- MODELO M/M/1/K ---")
+    print(f"λ = {lam}, μ = {mu}, K = {K}")
+
+    rho = lam / mu
+
+    # para el caso de ρ = 1
+    if rho == 1:
+        P0 = 1 / (K + 1)
+    else:
+        P0 = (1 - rho) / (1 - rho**(K + 1))
+
+    print("\n--- PROCEDIMIENTO ---")
+    print(f"ρ = {rho}")
+    print(f"P0 = {round(P0, 6)}")
+
+    # L (que es el número promedio de unidades)
+    if rho == 1:
+        L = K / 2
+    else:
+        L = (rho * (1 - (K + 1) * rho**K + K * rho**(K + 1))) / ((1 - rho) * (1 - rho**(K + 1)))
+
+    # Lq 
+    Lq = L - (1 - P0)
+
+    W = L / lam
+    Wq = Lq / lam
+
+    print(f"L = {round(L, 4)}")
+    print(f"Lq = {round(Lq, 4)}")
+    print(f"W = {round(W, 4)}")
+    print(f"Wq = {round(Wq, 4)}")
+
+# ----------------------------------------------
+# MENÚ PRINCIPAL
+# ----------------------------------------------
+def main():
+    while True:
+        print("\n--- MENÚ ---")
+        print("1. Modelo M/M/1")
+        print("2. Modelo M/M/C")
+        print("3. Modelo M/M/1/K")
+        print("4. Salir")ción:
+        op = int(input("Seleccione que operacion quieres hacer: "))
+
+        if op == 1:
+            lam = float(input("Ingresa λ (cuantas llegadas tuviste): "))
+            mu = float(input("Ingrese μ (numero de servicio): "))
+            modelo_mm1(lam, mu)
+
+        elif op == 2:
+            lam = float(input("Ingrese λ (promedio de llegadas): "))
+            mu = float(input("Ingrese μ (promedio de servicio): "))
+            c = int(input("Ingrese el número de servidores C: "))
+            modelo_mmc(lam, mu, c)
+
+        elif op == 3:
+            lam = float(input("Ingrese λ (promedio de llegadas): "))
+            mu = float(input("Ingrese μ (promedio de servicio): "))
+            K = int(input("Ingrese capacidad máxima K: "))
+            modelo_mm1k(lam, mu, K)
+
+        elif op == 4:
+            print("Bye, suerte con tu entrega!!!")
+            break
