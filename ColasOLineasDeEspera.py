@@ -30,3 +30,14 @@ def modelo_mm1(lam, mu):
     Lq = (rho**2) / (1 - rho)  # número promedio en cola
     W = L / lam  # tiempo en el sistema
     Wq = Lq / lam  # tiempo en cola
+
+print("\n--- PROCEDIMIENTO ---")
+    print(f"ρ = λ/μ = {lam}/{mu} = {round(rho, 4)}")
+    print(f"L = ρ / (1 - ρ) = {round(L, 4)}")
+    print(f"Lq = ρ^2 / (1 - ρ) = {round(Lq, 4)}")
+    print(f"W = L / λ = {round(W, 4)}")
+    print(f"Wq = Lq / λ = {round(Wq, 4)}")
+
+# ----------------------------------------------
+# MODELO M/M/C
+# ----------------------------------------------
