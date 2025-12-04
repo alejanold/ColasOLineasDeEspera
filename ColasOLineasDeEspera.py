@@ -1,7 +1,8 @@
 # ----------------------------------------------
 # Programa para calcular modelos de colas:
 # en este caso M/M/1, M/M/C y M/M/1/K
-# Investigacion de Operaciones
+# Investigacion de Operaciones 
+# Hecho por ALejandro Ortiz (D24390248)
 # ----------------------------------------------
 # Variables a usar:
 # λ =  promedio de llegadas
